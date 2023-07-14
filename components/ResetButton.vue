@@ -11,7 +11,7 @@ const props = defineProps({
     class="btn-reset d-flex justify-content-center align-items-center p-0 border border-0 text-center"
   >
     <slot></slot>
-    <Icon :name="icon" />
+    <Icon v-if="icon" :name="icon" />
   </button>
 </template>
 

@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="timePicker rounded pullClockDown d-flex justify-content-center align-items-center"
+    class="timePicker rounded hideClock d-flex justify-content-center align-items-center"
   >
     ti123me picker
   </div>
@@ -11,32 +11,32 @@
 <style lang="sass" scoped>
 @import "~~/assets/sass/color.sass"
 
-$picker-height: 328px
+$picker-size: 300px
 
 .timePicker
-  height: $picker-height
+  height: $picker-size
   width: 100%
-
-  transition: .3s
+  position: absolute
   background-color: $dark-purple
-  transform: translateY(0px)
+  top: 105px
 
-.pullClockUp
-  animation: pullUp .3s ease-in-out forwards
+.showClock
+  animation: showCock .3s ease-in-out forwards
 
-.pullClockDown
-  animation: pullDown .3s ease-in-out forwards
+.hideClock
+  animation: hideClock .3s ease-in-out forwards
 
 
-@keyframes pullUp
+@keyframes showCock
   0%
-    transform: translateY(0px)
+    transform: translateX($picker-size)
   100%
-    transform: translateY(-361px)
+    transform: translateX(0px)
 
-@keyframes pullDown
+@keyframes hideClock
   0%
-    transform: translateY(-361px)
+    transform: translateX(0px)
+
   100%
-    transform: translateY(0px)
+    transform: translateX($picker-size)
 </style>

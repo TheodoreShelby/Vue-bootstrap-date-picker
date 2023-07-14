@@ -59,7 +59,7 @@ watch(
     @click="$emit('previous-year')"
   ></ResetButton>
   <div class="year-picker position-relative">
-    <ResetButton :icon="'ic:round-arrow-drop-down'" @click="toggleYearPicker">
+    <ResetButton @click="toggleYearPicker">
       <template #default>
         <span>{{ currentYear }}</span>
       </template>
@@ -93,16 +93,16 @@ watch(
 $grid-size: 280px
 $grid-gap: 10px
 $cell-size: 300px
+$translateShow: -230px
+$translateHide: 306px
 
 .year-container
   width: $cell-size
-  margin-left: -206px
+  transform: translateX($translateShow)
   height: $cell-size
   background-color: $background-main
 
   .years
-    width: $grid-size
-    height: $grid-size
     display: grid
     grid-template-columns: repeat(4,1fr)
     grid-template-rows: repeat(4,  calc(($grid-size - ($grid-gap * 3)) / 4))
@@ -120,7 +120,7 @@ $cell-size: 300px
       color: white
 
 .year-container.hide
-  margin-left: 306px
+  transform: translateX($translateHide)
 
 .show
     animation: openYearPicker .5s ease-in
@@ -130,16 +130,13 @@ $cell-size: 300px
 
 @keyframes openYearPicker
   0%
-    width: 0px
-    margin-left: 306px
+    transform: translateX($translateHide)
   100%
-    width: $grid-size
+    transform: translateX($translateShow)
 
 @keyframes closeYearPicker
   0%
-    width: $grid-size
-    margin-left: -206px
+    transform: translateX($translateShow)
   100%
-    width: 0px
-    margin-left: 306px
+    transform: translateX($translateHide)
 </style>
