@@ -21,7 +21,9 @@ const togglePicker = () => {
   datePickerElement.classList.toggle("scrolldown");
   datePickerElement.classList.toggle("scrollup");
 
-  const timePickerElement = document.getElementsByClassName("timePicker")[0];
+  const timePickerElement = document.getElementsByClassName(
+    "timePicker-container"
+  )[0];
   if (timePickerElement.classList.contains("showClock")) {
     timePickerElement.classList.toggle("showClock");
     timePickerElement.classList.toggle("hideClock");
@@ -94,7 +96,9 @@ const selectedMonth = (mm: number) => {
 };
 
 const toggleTimePicker = () => {
-  const timePickerElement = document.getElementsByClassName("timePicker")[0];
+  const timePickerElement = document.getElementsByClassName(
+    "timePicker-container"
+  )[0];
   timePickerElement.classList.toggle("showClock");
   timePickerElement.classList.toggle("hideClock");
 
