@@ -58,12 +58,17 @@ watch(
     :icon="'ic:outline-keyboard-arrow-left'"
     @click="$emit('previous-year')"
   ></ResetButton>
+  <ResetButton @click="toggleYearPicker">
+    <template #default>
+      <span>{{ currentYear }}</span>
+    </template>
+  </ResetButton>
+  <ResetButton
+    :icon="'ic:outline-keyboard-arrow-right'"
+    @click="$emit('next-year')"
+  ></ResetButton>
+
   <div class="year-picker position-relative">
-    <ResetButton @click="toggleYearPicker">
-      <template #default>
-        <span>{{ currentYear }}</span>
-      </template>
-    </ResetButton>
     <div
       class="year-container p-1 position-absolute justify-content-center align-items-center"
       :class="`${isShowYearPicker ? 'show' : 'hide'}`"
@@ -81,10 +86,6 @@ watch(
       </div>
     </div>
   </div>
-  <ResetButton
-    :icon="'ic:outline-keyboard-arrow-right'"
-    @click="$emit('next-year')"
-  ></ResetButton>
 </template>
 
 <style lang="sass" scoped>
@@ -93,31 +94,34 @@ watch(
 $grid-size: 280px
 $grid-gap: 10px
 $cell-size: 300px
-$translateShow: -230px
+$translateShow: -288px
 $translateHide: 306px
 
-.year-container
-  width: $cell-size
-  transform: translateX($translateShow)
-  height: $cell-size
-  background-color: $background-main
+.year-picker
+  top: 24px
 
-  .years
-    display: grid
-    grid-template-columns: repeat(4,1fr)
-    grid-template-rows: repeat(4,  calc(($grid-size - ($grid-gap * 3)) / 4))
-    gap: $grid-gap
+  .year-container
+    width: $cell-size
+    transform: translateX($translateShow)
+    height: $cell-size
+    background-color: $background-main
 
-    .year
-      border: 1px solid transparent
-      border-radius: 8px
+    .years
+      display: grid
+      grid-template-columns: repeat(4,1fr)
+      grid-template-rows: repeat(4,  calc(($grid-size - ($grid-gap * 3)) / 4))
+      gap: $grid-gap
 
-      &:hover
-        border-color: $dark-purple
+      .year
+        border: 1px solid transparent
+        border-radius: 8px
 
-    .year.currentYear
-      background-color: $dark-purple !important
-      color: white
+        &:hover
+          border-color: $dark-purple
+
+      .year.currentYear
+        background-color: $dark-purple !important
+        color: white
 
 .year-container.hide
   transform: translateX($translateHide)
